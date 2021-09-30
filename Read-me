@@ -1,0 +1,50 @@
+Language: Python
+Course: Intelligent System Design
+Dept. of Electronics And Communications, UETP
+
+Author: Salam Ullah
+Roll: 13BNELE0623
+
+Supervisor: Prof. Dr. Gul Muhammad Khan.
+
+-------------------------------------
+
+Here, Emotion labels are represented as:
+
+0=Neutral, 1=Anger, 2=Disgust, 3=Fear, 4=Happiness, 5=Sadness, 6=Surprise
+Image Datasets are:
+
+CK+, JAFFE, GER2018, FER2013
+
+# Step 1 & 2: Dataset Processing & Image pre-processing:
+
+
+All the image dataset is transformed into grayscale. FER2013 is allready in grayscale of 48*48 images presented in CSV file. CK+ and JAFFE dataset is resized into 256 ∗ 256. Facial image is detected, cropped and aligned using 68-point facial landmark. CK+, AND JAFFE dataset is modified in the version of CSV file containing emotion label and flatten pixel value. So there are 256 ∗ 256 or 65536 pixel value and an emotion label is assigned per image of expression dataset.
+
+--> CK+ dataset comes with 8 Emotion labels, FACs labels, Landmarks and Extended cohn-kanade images folder. For each individual there was number of facial expression but most of them have all facial expression image. Modified dataset was prepared manually by taking all facial expression image with right dedicated labels stored in Emotion labels folder. 
+
+--> JAFFE contains facial expression for 10 Japanese women by taking each expression 3 times. Though not all emotion labels have 30 image. Some emotion label contains less or more.
+
+-> FER2013comes as CSV file with emotion, pixels and Usage. In original datast label '0' represented 'anger' and so on. Thats why emotion label is changed so that in all our dataset each emotion label has one dedicated value. The Usage with ”Training” is taken as training dataset, usage ”PublicTest” is used as validation set and ”PrivateTest” is used as testing set.
+
+# Step 3: Feature Extraction:
+
+
+Face region is detected using 68-point facial landmark. Landmark vector of shape (68, 2) is saved for each dataset which means the datasets are converted into array form to fed into classification models.
+(a) ck+ dataset is saved as CK_data.h5 after preprocessing
+(b)Jaffe as jaffe_mean_data.mat and its labels as cl_label.mat
+
+
+Datasets is trained in CNN model. Input data of first fully connected layer is used as CNN feature to later train on ANN and SVM classifier.
+
+
+-------------------------------------------
+
+
+
+More details is discussed in thesis paper.
+
+
+
+
+(thankss)
